@@ -29,6 +29,21 @@ app.get("/articles", (req, res) => {
   });
 });
 
+app.post("/articles", (req, res) => {
+  const newArticle = new Article({
+    title: req.body.title,
+    content: req.body.content,
+  });
+
+  newArticle.save((err) => {
+    if (!err) {
+      res.send("success add new article");
+    } else {
+      res.send(err);
+    }
+  });
+});
+
 app.get("/", (req, res) => {
   console.log("hai");
 });
