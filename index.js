@@ -65,7 +65,18 @@ app
       }
     });
   })
-  .post()
+  .put((req, res) => {
+    Article.findOneAndUpdate(
+      { title: req.params.articleTitle },
+      { title: req.body.title, content: req.body.content },
+      { upsert: true },
+      function (err) {
+        if (!err) {
+          res.send("succes update article");
+        }
+      }
+    );
+  })
   .delete();
 
 app.get("/", (req, res) => {
