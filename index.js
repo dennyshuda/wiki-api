@@ -54,6 +54,20 @@ app
     });
   });
 
+app
+  .route("/articles/:articleTitle")
+  .get((req, res) => {
+    Article.findOne({ title: req.params.articleTitle }, (err, found) => {
+      if (found) {
+        res.send(found);
+      } else {
+        res.send(err);
+      }
+    });
+  })
+  .post()
+  .delete();
+
 app.get("/", (req, res) => {
   console.log("hai");
 });
