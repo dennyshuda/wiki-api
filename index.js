@@ -44,6 +44,16 @@ app.post("/articles", (req, res) => {
   });
 });
 
+app.delete("/articles", (req, res) => {
+  Article.deleteMany((err) => {
+    if (!err) {
+      res.send("succes delete all data");
+    } else {
+      res.send(err);
+    }
+  });
+});
+
 app.get("/", (req, res) => {
   console.log("hai");
 });
