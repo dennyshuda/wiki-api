@@ -19,8 +19,18 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
+app.get("/articles", (req, res) => {
+  Article.find((err, foundArticles) => {
+    if (!err) {
+      res.send(foundArticles);
+    } else {
+      console.log(err);
+    }
+  });
+});
+
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  console.log("hai");
 });
 
 app.listen(port, () => {
