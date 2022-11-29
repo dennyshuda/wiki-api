@@ -89,6 +89,20 @@ app
         }
       }
     );
+  })
+  .delete((req, res) => {
+    Article.deleteOne(
+      {
+        title: req.params.articleTitle,
+      },
+      function (err) {
+        if (!err) {
+          res.send("Succes delete article");
+        } else {
+          res.send(err);
+        }
+      }
+    );
   });
 
 app.get("/", (req, res) => {
