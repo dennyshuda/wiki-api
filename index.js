@@ -77,7 +77,19 @@ app
       }
     );
   })
-  .delete();
+  .patch((req, res) => {
+    Article.findOneAndUpdate(
+      { title: req.params.articleTitle },
+      { $set: req.body },
+      function (err) {
+        if (!err) {
+          res.send("succes update");
+        } else {
+          res.send(err);
+        }
+      }
+    );
+  });
 
 app.get("/", (req, res) => {
   console.log("hai");
